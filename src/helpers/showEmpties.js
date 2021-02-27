@@ -10,7 +10,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
     let tile = shown.pop()
 
 
-    if (!tile.show) {
+    if (!tile.show && !tile.hasFlag) {
       spaces--;
       tile.show = true
     }

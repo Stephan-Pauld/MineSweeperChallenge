@@ -10,3 +10,10 @@ export const revealTile = (field) => {
     payload: field,
   }
 };
+
+export const gameOver = (field) => {
+  return {
+    type: 'GAME_OVER',
+    payload: field,
+  }
+};
