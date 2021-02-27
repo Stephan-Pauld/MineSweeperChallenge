@@ -1,41 +1,55 @@
 import React, { useEffect } from 'react'
 import setUpField from '../helpers/setUpField'
 import { useSelector, useDispatch } from 'react-redux';
-import { cleanField } from '../actions'
+import { cleanField, revealTile } from '../actions'
+import Cell from './Cell'
 
 const style = {
   field: {
     display: 'flex'
   },
-  space: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 35,
-    height: 35,
-    fontWeight: 'bold',
-    border: '1px solid black',
-    backgroundColor: '#55a755',
-  }
+
 }
 
 
 export default function Field() {
-  const field = useSelector(state => state.cleanField)
+  const field = useSelector(state => state.manageField)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(cleanField())
   }, [])
 
-    return field.map((row) => {
+  const openTile = (cellInfo) => {
+    const { row, column } = cellInfo;
 
-      return (
-        <div style={style.field}>
-          {row.map((cell) => {
-            return <div style={style.space}>{cell.value}</div>
-          })}
-        </div>
-      )
-    })
+
+
+    if (!cellInfo.hasFlag) {
+      let copiedField = JSON.parse(JSON.stringify(field))
+      copiedField[row][column].show = true;
+      dispatch(revealTile(copiedField))
+    }
+
+  }
+
+  const setFlag = (e, cellInfo) => {
+    // Do I need to do something with the state of my game area? or changing the object is fine?
+    e.preventDefault()
+    console.log(cellInfo);
+    if (!cellInfo.shown) {
+      cellInfo.hasFlag = !cellInfo.hasFlag
+    }
+  }
+
+  return field.map((row) => {
+
+    return (
+      <div style={style.field}>
+        {row.map((cell) => {
+          return <Cell cellInfo={cell} setFlag={setFlag} openTile={openTile} />
+        })}
+      </div>
+    )
+  })
 }

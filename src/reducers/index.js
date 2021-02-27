@@ -1,8 +1,8 @@
-import cleanField from './cleanField';
+import manageField from './manageField';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
-  cleanField
+  manageField
 })
 
 export default allReducers;
