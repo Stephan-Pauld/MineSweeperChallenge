@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import setUpField from '../helpers/setUpField'
 import { useSelector, useDispatch } from 'react-redux';
 import { cleanField, revealTile } from '../actions'
 import Cell from './Cell'
@@ -14,8 +13,8 @@ const style = {
 
 
 export default function Field() {
-  const field = useSelector(state => state.manageField)
-  const dispatch = useDispatch()
+  const field = useSelector(state => state.manageField);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(cleanField())
@@ -23,37 +22,56 @@ export default function Field() {
 
   const openTile = (cellInfo) => {
     const { row, column } = cellInfo;
-
-
     let copiedField = JSON.parse(JSON.stringify(field))
 
-    if (copiedField[row][column].value === "💣") {
-      alert("Boom")
+    if (copiedField.field[row][column].value === "💣") {
+
+      copiedField.mineList.map((mine) => {
+        copiedField.field[mine.row][mine.column].show = true;
+      })
+
+      // console.log(copiedField.field);
+      const payLoadObj = {
+        field: copiedField.field,
+        mineList: copiedField.mineList
+      }
+      dispatch(revealTile(payLoadObj))
+      
     } else {
-      let emptyLocations = showEmpties(copiedField,row,column )
-      // copiedField[row][column].show = true;
-      dispatch(revealTile(emptyLocations))
+
+
+      let emptyLocations = showEmpties(copiedField.field, row, column)
+      const payLoadObj = {
+        field: emptyLocations,
+        mineList: copiedField.mineList
+      }
+      dispatch(revealTile(payLoadObj))
     }
 
   }
 
   const setFlag = (e, cellInfo) => {
-    // Do I need to do something with the state of my game area? or changing the object is fine?
+
     e.preventDefault()
-    console.log(cellInfo);
     if (!cellInfo.shown) {
       cellInfo.hasFlag = !cellInfo.hasFlag
     }
   }
+  if (field.field) {
+    return field.field.map((row) => {
 
-  return field.map((row) => {
+      return (
+        <div style={style.field}>
+          {row.map((cell) => {
+            return <Cell cellInfo={cell} setFlag={setFlag} openTile={openTile} />
+          })}
+        </div>
+      )
+    })
+  }
 
-    return (
-      <div style={style.field}>
-        {row.map((cell) => {
-          return <Cell cellInfo={cell} setFlag={setFlag} openTile={openTile} />
-        })}
-      </div>
-    )
-  })
+  return (
+    <h1>cats</h1>
+  )
+
 }

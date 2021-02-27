@@ -2,6 +2,7 @@ const setUpField = (r, c, m) => {
 
   let field = []
 
+  // Creating the Game Area with default tile settings
   for (let row = 0; row < r; row++) {
     let fieldRow = []
     for (let column = 0; column < c; column++) {
@@ -15,14 +16,18 @@ const setUpField = (r, c, m) => {
     }
     field.push(fieldRow);
   }
-  // console.table(field);
+
+  // randomly placing mines on the board befor we set state
   let mines = m;
+  // mineList = coords of all our mines to display when we press a mine
+  let mineList = []
   while (mines) {
     const randRow = Math.floor(Math.random() * r)
     const randCol = Math.floor(Math.random() * c)
     // console.log(field[randRow][randCol]);
     if (!field[randRow][randCol].value) {
       field[randRow][randCol].value = '💣'
+      mineList.push(field[randRow][randCol])
       mines--;
     }
   }
@@ -83,7 +88,7 @@ const setUpField = (r, c, m) => {
 
 
 
-  return field
+  return {field, mineList}
 }
 
 export default setUpField;

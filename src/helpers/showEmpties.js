@@ -2,7 +2,6 @@
 export default function showEmpties(field, row, column, empties) {
 
 
-
   let shown = [];
   shown.push(field[row][column])
 
@@ -19,7 +18,7 @@ export default function showEmpties(field, row, column, empties) {
       break;
     }
 
-    if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1].value === 0 && !field[tile.row - 1][tile.column - 1].show) {
+    if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1].value === 0 && !field[tile.row - 1][tile.column - 1].shows) {
       shown.push(field[tile.row - 1][tile.column - 1]);
 
     } else if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1]) {
