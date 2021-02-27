@@ -3,6 +3,7 @@ import setUpField from '../helpers/setUpField'
 import { useSelector, useDispatch } from 'react-redux';
 import { cleanField, revealTile } from '../actions'
 import Cell from './Cell'
+import showEmpties from '../helpers/showEmpties';
 
 const style = {
   field: {
@@ -24,11 +25,14 @@ export default function Field() {
     const { row, column } = cellInfo;
 
 
+    let copiedField = JSON.parse(JSON.stringify(field))
 
-    if (!cellInfo.hasFlag) {
-      let copiedField = JSON.parse(JSON.stringify(field))
-      copiedField[row][column].show = true;
-      dispatch(revealTile(copiedField))
+    if (copiedField[row][column].value === "💣") {
+      alert("Boom")
+    } else {
+      let emptyLocations = showEmpties(copiedField,row,column )
+      // copiedField[row][column].show = true;
+      dispatch(revealTile(emptyLocations))
     }
 
   }
