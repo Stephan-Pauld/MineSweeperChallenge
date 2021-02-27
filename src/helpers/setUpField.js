@@ -1,7 +1,7 @@
 const setUpField = (r, c, m) => {
 
   let field = []
-
+  const safeSpaces = r * c - m
   // Creating the Game Area with default tile settings
   for (let row = 0; row < r; row++) {
     let fieldRow = []
@@ -88,7 +88,7 @@ const setUpField = (r, c, m) => {
 
 
 
-  return {field, mineList}
+  return {field, mineList, safeSpaces}
 }
 
 export default setUpField;

@@ -6,7 +6,8 @@ import showEmpties from '../helpers/showEmpties';
 
 const style = {
   field: {
-    display: 'flex'
+    display: 'flex',
+    justifyContent: 'center'
   },
 
 }
@@ -30,20 +31,21 @@ export default function Field() {
         copiedField.field[mine.row][mine.column].show = true;
       })
 
-      // console.log(copiedField.field);
       const payLoadObj = {
         field: copiedField.field,
-        mineList: copiedField.mineList
+        mineList: copiedField.mineList,
+        safeSpaces: copiedField.safeSpaces
       }
       dispatch(revealTile(payLoadObj))
       
     } else {
 
+      let emptyLocations = showEmpties(copiedField.field, copiedField.safeSpaces, row, column)
 
-      let emptyLocations = showEmpties(copiedField.field, row, column)
       const payLoadObj = {
-        field: emptyLocations,
-        mineList: copiedField.mineList
+        field: emptyLocations.field,
+        mineList: copiedField.mineList,
+        safeSpaces: emptyLocations.spaces
       }
       dispatch(revealTile(payLoadObj))
     }
@@ -57,9 +59,9 @@ export default function Field() {
       cellInfo.hasFlag = !cellInfo.hasFlag
     }
   }
+  // console.log(field);
   if (field.field) {
     return field.field.map((row) => {
-
       return (
         <div style={style.field}>
           {row.map((cell) => {
@@ -71,7 +73,7 @@ export default function Field() {
   }
 
   return (
-    <h1>cats</h1>
+    <h1>Creating Mine Field...</h1>
   )
 
 }
