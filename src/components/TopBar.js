@@ -7,9 +7,10 @@ const style = {
     display:'flex', 
     justifyContent: 'center', 
     alignItems: 'center',
-    width: '40%',
+    width: '595px',
     margin: 'auto',
-    backgroundColor: '#c3b50d'
+    marginBottom: '1%',
+    background: 'linear-gradient(to bottom right, #ffff00 0%, #666699 90%)'
   }
 }
 
@@ -17,7 +18,7 @@ export default function TopBar() {
   const field = useSelector(state => state.manageField);
   return (
     <div style={style.bar}>
-      <h5>{field.safeSpaces}</h5>
+      <h3>Tiles Remaining: {field.safeSpaces}</h3>
       <Timer/>
       
     </div>

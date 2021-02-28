@@ -45,7 +45,6 @@ export default function Field() {
       } else {
 
         if (!timerIsActive) {
-          
           dispatch(toggleTimer())
         }
 
@@ -92,6 +91,7 @@ export default function Field() {
       )
     })
   }
+
 
   return (
     <h1>Creating Mine Field...</h1>

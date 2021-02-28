@@ -8,8 +8,8 @@ const style = {
     width: 35,
     height: 35,
     fontWeight: 'bold',
-    border: '1px solid black',
-    backgroundColor: '#5D5360',
+    border: '1px solid #1515bf96',
+    background: 'linear-gradient(to bottom right, #669999 31%, #003366 123%)'
   },
   flag: {
     width: 25
