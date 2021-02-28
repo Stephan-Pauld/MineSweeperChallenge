@@ -6,16 +6,6 @@ import Winner from './components/Winner'
 import { useSelector, useDispatch } from 'react-redux';
 import { cleanField, clearTimer } from './actions';
 
-import Button from '@material-ui/core/Button';
-
-
-
-const style = {
-  controlButton: {
-    margin: '0 0 5px 0',
-    background: 'linear-gradient(to bottom right, #ffff00 0%, #666699 90%)'
-  }
-}
 
 
 function App() {
@@ -31,25 +21,7 @@ function App() {
   return (
     <div className="App">
       <Winner/>
-      <h1>Xerris Sweeper</h1>
-      <div >
-        {
-          field.gameOver ?
-            <Button
-              style={style.controlButton}
-              variant="contained"
-              color="none"
-              onClick={() => newGame()}
-              
-            >
-              Restart
-        </Button>
-            :
-            ''
-        }
-
-
-      </div>
+      <h1>Stephan Sweeper</h1>
       <TopBar />
       <Field />
     </div>

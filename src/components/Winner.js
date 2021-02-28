@@ -69,7 +69,7 @@ export default function Winner() {
 
           {field.safeSpaces === 0 ? 
           `Excellent Job! You Finished With A Time Of ${minutes} Minutes And ${seconds} seconds` : 
-          `Whoops... Careful... You Blew Up At ${minutes} Minutes And ${seconds} seconds`
+          `Vegetables and NOT BLOWING UP is essential for proper nutrition You Blew Up At ${minutes} Minutes And ${seconds} seconds`
           }
 
           </DialogContentText>

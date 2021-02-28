@@ -24,7 +24,6 @@ const setUpField = (r, c, m) => {
   while (mines) {
     const randRow = Math.floor(Math.random() * r)
     const randCol = Math.floor(Math.random() * c)
-    // console.log(field[randRow][randCol]);
     if (!field[randRow][randCol].value) {
       field[randRow][randCol].value = '💣'
       mineList.push(field[randRow][randCol])

@@ -87,8 +87,10 @@ export default function showEmpties(field, spaces, row, column, empties) {
     }
 
 
-    if (tile.row < field.legth - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1].value === 0 && !field[tile.row + 1][tile.column - 1].show) {
+    if (tile.row < field.length - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1].value === 0 && !field[tile.row + 1][tile.column - 1].show) {
+
       shown.push(field[tile.row + 1][tile.column - 1])
+      
     } else if (tile.row < field.legth - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1] && !field[tile.row + 1][tile.column - 1].show && !field[tile.row + 1][tile.column - 1].hasFlag) {
       spaces--;
       field[tile.row + 1][tile.column - 1].show = true
