@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { cleanField, revealTile, gameOver } from '../actions'
+import { cleanField, revealTile, gameOver, toggleTimer } from '../actions'
 import Cell from './Cell'
 import showEmpties from '../helpers/showEmpties';
 
@@ -15,24 +15,13 @@ const style = {
 
 export default function Field() {
   const field = useSelector(state => state.manageField);
+  const timerIsActive = useSelector(state => state.timerIsActive)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(cleanField())
   }, [])
 
-  // const gameOver = (payload) => {
-
-  //   // instead of this function lets add a gameover state 
-  //   // to field and if true lets take a complete copy of the 
-  //   // board pass it to cell and remove the onClick events?
-
-  //   dispatch(revealTile(payload))
-  //   setTimeout(() => {
-  //     alert("Gameover")
-  //     dispatch(cleanField())
-  //   }, 300);
-  // }
 
   const openTile = (cellInfo) => {
     const { row, column } = cellInfo;
@@ -51,8 +40,14 @@ export default function Field() {
           safeSpaces: copiedField.safeSpaces,
           gameOver: true,
         }
+        dispatch(toggleTimer())
         dispatch(gameOver(payLoadObj))
       } else {
+
+        if (!timerIsActive) {
+          
+          dispatch(toggleTimer())
+        }
 
         let emptyLocations = showEmpties(copiedField.field, copiedField.safeSpaces, row, column)
 

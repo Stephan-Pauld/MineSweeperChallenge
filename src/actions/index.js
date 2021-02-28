@@ -35,3 +35,9 @@ export const resetSeconds = () => {
     type: 'RESET_SECONDS'
   }
 };
+export const toggleTimer = () => {
+  
+  return {
+    type: 'TOGGLE_TIMER'
+  }
+};

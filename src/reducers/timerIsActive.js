@@ -1,4 +1,5 @@
-const toggleTimer = (state = false, action) => {
+const timerIsActive = (state = false, action) => {
+
   switch (action.type) {
     case 'TOGGLE_TIMER':
       return !state;
@@ -8,4 +9,4 @@ const toggleTimer = (state = false, action) => {
 
 }
 
-export default toggleTimer;
+export default timerIsActive;
