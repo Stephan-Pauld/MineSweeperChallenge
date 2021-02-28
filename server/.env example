@@ -1,0 +1,5 @@
+MYS_HOST= "localhost"
+MYS_USER= "root"
+MYS_DATABASE= "high_score"
+MYS_PASSWORD= "Database Password"
+MYS_PORT= "3306"

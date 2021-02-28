@@ -24,7 +24,6 @@ export default function Winner() {
 
   // Is it fair to use "useState" in these situations rather than
   // using Redux?
-
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -45,6 +44,7 @@ export default function Winner() {
 
   }
 
+  // our material UI box
   return (
     <div>
       <Dialog

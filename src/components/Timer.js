@@ -19,6 +19,7 @@ export default function Timer() {
   const dispatch = useDispatch();
 
 
+  // timer using redux. same timer from Dota2 Timer project except redux
   useEffect(() => {
     let interval = null;
 

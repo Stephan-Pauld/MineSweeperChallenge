@@ -21,6 +21,10 @@ const setUpField = (r, c, m) => {
   let mines = m;
   // mineList = coords of all our mines to display when we press a mine
   let mineList = []
+
+  // choosing a random row and column to place a min then we push to our list of mines
+  // we push to the list to show all the mines on gameOver(when a mine is hit)
+
   while (mines) {
     const randRow = Math.floor(Math.random() * r)
     const randCol = Math.floor(Math.random() * c)
@@ -33,6 +37,9 @@ const setUpField = (r, c, m) => {
 
 
 
+
+  // I need to clean this up... 
+  // checking topleft, top, topright.... 
   for (let row = 0; row < r; row++) {
     for (let column = 0; column < c; column++) {
       // const plusOne = field[row][column].value++;

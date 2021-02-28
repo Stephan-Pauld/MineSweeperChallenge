@@ -27,13 +27,14 @@ const style = {
 }
 
 export default function Cell({ cellInfo, setFlag, openTile, gameOver }) {
+
 const flag = <img style={style.flag}src="https://www.flaticon.com/svg/vstatic/svg/2164/2164733.svg?token=exp=1614460155~hmac=796d4433507353b3cd43cb6b3c02f8e2" alt=""/>
 
 
 
-
+  // this condition !gameover allows this component to allow button clicks
+  // but when the conditions is true we render the same stuff with no event handlers
   if (!gameOver) {
-
     return (
       <div
         style={cellInfo.show ? style.revealed : style.cellStyle}
@@ -49,6 +50,8 @@ const flag = <img style={style.flag}src="https://www.flaticon.com/svg/vstatic/sv
 
 
 
+
+  // no onclick or contextMenu
   return (
     <div
     style={cellInfo.show ? style.revealed : style.cellStyle}

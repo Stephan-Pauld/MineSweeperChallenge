@@ -1,6 +1,5 @@
 import setUpField from '../helpers/setUpField';
 
-
 const manageField = (state = {}, action) => {
   switch (action.type) {
     case 'CLEAN_FIELD':
@@ -12,7 +11,6 @@ const manageField = (state = {}, action) => {
     default:
       return state
   }
-
 }
 
 export default manageField;

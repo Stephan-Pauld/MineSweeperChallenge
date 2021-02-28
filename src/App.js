@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <Winner/>
-      <h1>Stephan Sweeper</h1>
+      <h1>Xerris Sweeper</h1>
       <TopBar />
       <Field />
     </div>

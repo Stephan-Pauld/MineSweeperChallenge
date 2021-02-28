@@ -4,6 +4,7 @@ import { cleanField, revealTile, gameOver, toggleTimer } from '../actions'
 import Cell from './Cell'
 import showEmpties from '../helpers/showEmpties';
 
+
 const style = {
   field: {
     display: 'flex',
@@ -18,18 +19,25 @@ export default function Field() {
   const timerIsActive = useSelector(state => state.timerIsActive)
   const dispatch = useDispatch();
 
+
+  // use effect creates the fresh field right away
   useEffect(() => {
     dispatch(cleanField())
   }, [])
 
 
+
+  // When we click on a tile from the cell comp
   const openTile = (cellInfo) => {
     const { row, column } = cellInfo;
     let copiedField = JSON.parse(JSON.stringify(field))
 
+
+    // as long as a cell does not have a flag
     if (!cellInfo.hasFlag) {
       if (copiedField.field[row][column].value === "💣") {
 
+        // we map through all the mine cells and set them all to true when a mine is hit
         copiedField.mineList.map((mine) => {
           copiedField.field[mine.row][mine.column].show = true;
         })
@@ -44,12 +52,17 @@ export default function Field() {
         dispatch(gameOver(payLoadObj))
       } else {
 
+
+        // turns the clock on when we first click on a cell to start the game
         if (!timerIsActive) {
           dispatch(toggleTimer())
         }
 
+        // variable for the show empties helper we pass in our copied field and the amount of safe spaces
         let emptyLocations = showEmpties(copiedField.field, copiedField.safeSpaces, row, column)
 
+
+        // I am new to redux and not sure if this is proper... I would love to know a cleaner way of doing this.
         const payLoadObj = {
           field: emptyLocations.field,
           mineList: copiedField.mineList,
@@ -59,6 +72,9 @@ export default function Field() {
       }
     }
   }
+
+
+  // Our win condition when there are no tiles left to click
   if (field.safeSpaces === 0 && !field.gameOver) {
     let copiedField = JSON.parse(JSON.stringify(field))
     const payLoadObj = {
@@ -68,12 +84,18 @@ export default function Field() {
       gameOver: true,
     }
     setTimeout(() => {
-
+      // I found with the dispatch a few times I need a timeout as it happens too fast i think
       dispatch(gameOver(payLoadObj))
     }, 400);
   }
 
+
+
+
+
   const setFlag = (e, cellInfo) => {
+    // our right click from the cell comp setting a flag as long as the tile has not been revealed
+    
     e.preventDefault()
     const { row, column } = cellInfo;
     let copiedField = JSON.parse(JSON.stringify(field))

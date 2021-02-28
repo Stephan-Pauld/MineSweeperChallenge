@@ -1,9 +1,11 @@
+// Resets a new board
 export const cleanField = () => {
   return {
     type: 'CLEAN_FIELD'
   }
 };
 
+// sets the state to the new board of whichever tiles are now shown
 export const revealTile = (field) => {
   return {
     type: 'REVEAL_TILE',
@@ -11,6 +13,7 @@ export const revealTile = (field) => {
   }
 };
 
+// ends the game and does not allow anymore tile selections
 export const gameOver = (field) => {
   return {
     type: 'GAME_OVER',
@@ -30,11 +33,14 @@ export const minutes = () => {
   }
 };
 
+// not necessary.. but when seconds hit 60 this resets the seconds to 0 so we can +1 to minutes
 export const resetSeconds = () => {
   return {
     type: 'RESET_SECONDS'
   }
 };
+
+//turns timer on and off
 export const toggleTimer = () => {
   
   return {
@@ -42,6 +48,7 @@ export const toggleTimer = () => {
   }
 };
 
+// clears the clock minutes and seconds
 export const clearTimer = () => {
   
   return {

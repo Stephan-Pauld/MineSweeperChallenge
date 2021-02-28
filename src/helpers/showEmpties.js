@@ -10,11 +10,15 @@ export default function showEmpties(field, spaces, row, column, empties) {
     let tile = shown.pop()
 
 
+    // if whatever we popped off is not revealed and does not have a flag
+    // then we show the tile and remove a space count
     if (!tile.show && !tile.hasFlag) {
       spaces--;
       tile.show = true
     }
 
+    // if we dont select a 0 there is no point to continue
+    // we only want to look at 0 values!
     if (tile.value !== 0) {
       break;
     }
@@ -31,8 +35,6 @@ export default function showEmpties(field, spaces, row, column, empties) {
     // and if it is not we reveal that tile because it means it has 
     // to be the boder around the empty tiles.
     // we also remove a "safe space" count for each bordered tile.
-
-
 
 
     if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1].value === 0 && !field[tile.row - 1][tile.column - 1].show) {
