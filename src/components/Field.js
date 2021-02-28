@@ -64,8 +64,6 @@ export default function Field() {
         dispatch(revealTile(payLoadObj))
       }
     }
-
-
   }
 
   const setFlag = (e, cellInfo) => {

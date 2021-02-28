@@ -17,3 +17,21 @@ export const gameOver = (field) => {
     payload: field,
   }
 };
+
+export const seconds = () => {
+  return {
+    type: 'ADD_SECOND'
+  }
+};
+
+export const minutes = () => {
+  return {
+    type: 'ADD_MIN'
+  }
+};
+
+export const resetSeconds = () => {
+  return {
+    type: 'RESET_SECONDS'
+  }
+};

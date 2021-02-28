@@ -38,7 +38,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
     if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1].value === 0 && !field[tile.row - 1][tile.column - 1].show) {
       shown.push(field[tile.row - 1][tile.column - 1]);
 
-    } else if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1] && !field[tile.row - 1][tile.column - 1].show) {
+    } else if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1] && !field[tile.row - 1][tile.column - 1].show && !field[tile.row - 1][tile.column - 1].hasFlag) {
       spaces--;
       field[tile.row - 1][tile.column - 1].show = true;
     }
@@ -46,7 +46,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
     if (tile.row > 0 && field[tile.row - 1][tile.column].value === 0 && !field[tile.row - 1][tile.column].show) {
       shown.push(field[tile.row - 1][tile.column])
 
-    } else if (tile.row > 0 && field[tile.row - 1][tile.column] && !field[tile.row - 1][tile.column].show) {
+    } else if (tile.row > 0 && field[tile.row - 1][tile.column] && !field[tile.row - 1][tile.column].show && !field[tile.row - 1][tile.column].hasFlag) {
       spaces--;
       field[tile.row - 1][tile.column].show = true
     }
@@ -56,7 +56,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
 
       shown.push(field[tile.row - 1][tile.column + 1])
 
-    } else if (tile.row > 0 && tile.column < field[1].length - 1 && field[tile.row - 1][tile.column + 1] && !field[tile.row - 1][tile.column + 1].show) {
+    } else if (tile.row > 0 && tile.column < field[1].length - 1 && field[tile.row - 1][tile.column + 1] && !field[tile.row - 1][tile.column + 1].show && !field[tile.row - 1][tile.column + 1].hasFlag) {
 
       spaces--;
       field[tile.row - 1][tile.column + 1].show = true
@@ -64,7 +64,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
 
     if (tile.column < field[1].length - 1 && field[tile.row][tile.column + 1].value === 0 && !field[tile.row][tile.column + 1].show) {
       shown.push(field[tile.row][tile.column + 1])
-    } else if (tile.column < field[1].length - 1 && field[tile.row][tile.column + 1] && !field[tile.row][tile.column + 1].show) {
+    } else if (tile.column < field[1].length - 1 && field[tile.row][tile.column + 1] && !field[tile.row][tile.column + 1].show && !field[tile.row][tile.column + 1].hasFlag) {
       spaces--;
       field[tile.row][tile.column + 1].show = true
     }
@@ -73,7 +73,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
 
       shown.push(field[tile.row + 1][tile.column + 1]);
 
-    } else if (tile.row < field.length - 1 && tile.column < field[1].length - 1 && field[tile.row + 1][tile.column + 1] && !field[tile.row + 1][tile.column + 1].show) {
+    } else if (tile.row < field.length - 1 && tile.column < field[1].length - 1 && field[tile.row + 1][tile.column + 1] && !field[tile.row + 1][tile.column + 1].show && !field[tile.row + 1][tile.column + 1].hasFlag) {
       spaces--;
 
       field[tile.row + 1][tile.column + 1].show = true
@@ -81,7 +81,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
 
     if (tile.row < field.length - 1 && field[tile.row + 1][tile.column].value === 0 && !field[tile.row + 1][tile.column].show) {
       shown.push(field[tile.row + 1][tile.column])
-    } else if (tile.row < field.length - 1 && field[tile.row + 1][tile.column] && !field[tile.row + 1][tile.column].show) {
+    } else if (tile.row < field.length - 1 && field[tile.row + 1][tile.column] && !field[tile.row + 1][tile.column].show && !field[tile.row + 1][tile.column].hasFlag) {
       spaces--;
       field[tile.row + 1][tile.column].show = true;
     }
@@ -89,14 +89,14 @@ export default function showEmpties(field, spaces, row, column, empties) {
 
     if (tile.row < field.legth - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1].value === 0 && !field[tile.row + 1][tile.column - 1].show) {
       shown.push(field[tile.row + 1][tile.column - 1])
-    } else if (tile.row < field.legth - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1] && !field[tile.row + 1][tile.column - 1].show) {
+    } else if (tile.row < field.legth - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1] && !field[tile.row + 1][tile.column - 1].show && !field[tile.row + 1][tile.column - 1].hasFlag) {
       spaces--;
       field[tile.row + 1][tile.column - 1].show = true
     }
 
     if (tile.column > 0 && field[tile.row][tile.column - 1].value === 0 && !field[tile.row][tile.column - 1].show) {
       shown.push(field[tile.row][tile.column - 1])
-    } else if (tile.column > 0 && field[tile.row][tile.column - 1] && !field[tile.row][tile.column - 1].show) {
+    } else if (tile.column > 0 && field[tile.row][tile.column - 1] && !field[tile.row][tile.column - 1].show && !field[tile.row][tile.column - 1].hasFlag) {
       spaces--;
       field[tile.row][tile.column - 1].show = true
     }
