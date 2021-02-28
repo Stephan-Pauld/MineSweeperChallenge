@@ -41,3 +41,10 @@ export const toggleTimer = () => {
     type: 'TOGGLE_TIMER'
   }
 };
+
+export const clearTimer = () => {
+  
+  return {
+    type: 'CLEAR'
+  }
+};

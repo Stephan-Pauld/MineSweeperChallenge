@@ -1,7 +1,7 @@
 import './App.css';
 import Field from './components/Field';
 import { useSelector, useDispatch } from 'react-redux';
-import { cleanField } from './actions';
+import { cleanField, clearTimer } from './actions';
 import TopBar from './components/TopBar'
 
 function App() {
@@ -9,6 +9,13 @@ function App() {
   const toggleTimer = useSelector(state => state.toggleTimer)
   const dispatch = useDispatch();
 
+
+
+  const newGame = () => {
+    dispatch(cleanField())
+    dispatch(clearTimer())
+
+  }
   return (
     <div className="App">
 
@@ -16,7 +23,7 @@ function App() {
       <TopBar/>
       {
         field.gameOver ?
-          <button onClick={() => dispatch(cleanField())}>Restart</button> : ''
+          <button onClick={() => newGame()}>Restart</button> : ''
       }
       <Field />
     </div>

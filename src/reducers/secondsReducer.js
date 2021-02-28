@@ -3,7 +3,9 @@ const secondsReducer = (state = 0, action) => {
     case 'ADD_SECOND':
       return state + 1;
     case 'RESET_SECONDS':
-      return 0
+      return 0;
+    case 'CLEAR':
+      return 0;
     default:
       return state
   }
