@@ -4,7 +4,7 @@ import setUpField from '../helpers/setUpField';
 const manageField = (state = {}, action) => {
   switch (action.type) {
     case 'CLEAN_FIELD':
-      return setUpField(5, 5, 1);
+      return setUpField(16,16,40);
     case 'REVEAL_TILE':
       return action.payload;
     case 'GAME_OVER':

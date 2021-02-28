@@ -40,7 +40,7 @@ export default function Field() {
           safeSpaces: copiedField.safeSpaces,
           gameOver: true,
         }
-        dispatch(toggleTimer())
+
         dispatch(gameOver(payLoadObj))
       } else {
 
@@ -58,6 +58,19 @@ export default function Field() {
         dispatch(revealTile(payLoadObj))
       }
     }
+  }
+  if (field.safeSpaces === 0 && !field.gameOver) {
+    let copiedField = JSON.parse(JSON.stringify(field))
+    const payLoadObj = {
+      field: copiedField.field,
+      mineList: copiedField.mineList,
+      safeSpaces: copiedField.safeSpaces,
+      gameOver: true,
+    }
+    setTimeout(() => {
+
+      dispatch(gameOver(payLoadObj))
+    }, 400);
   }
 
   const setFlag = (e, cellInfo) => {
