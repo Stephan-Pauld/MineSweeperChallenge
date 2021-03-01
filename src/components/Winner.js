@@ -63,8 +63,12 @@ export default function Winner() {
     if (playerStats.name.length > 3 && playerStats.name.length < 8) {
       axios.post('http://localhost:3001/users', playerStats)
         .then((res) => {
-          handleClose()
-          console.log("Axios Resolved!", highScoreName);
+          console.log(res.data);
+          if (res.data) {
+            handleClose()
+          }
+
+
         })
         .catch((err) => {
           console.log(err);
