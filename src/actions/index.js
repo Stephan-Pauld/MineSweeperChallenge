@@ -63,3 +63,10 @@ export const setLeaderBoard = (stats) => {
     payload: stats,
   }
 };
+
+export const highScoreInput = (input) => {
+  return {
+    type: 'HS_INPUT',
+    payload: input,
+  }
+};

@@ -6,10 +6,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import InputScore from './InputScore'
 
 import { useSelector, useDispatch } from 'react-redux';
 import { cleanField, clearTimer, toggleTimer } from '../actions';
-import axios from "axios";
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -31,24 +32,6 @@ export default function Winner() {
     dispatch(cleanField())
     dispatch(clearTimer())
     setOpen(false)
-  };
-
-  const submitScore = () => {
-    const score = ((216 - field.safeSpaces) * 10000) - ((minutes * 60 + seconds) * 1000)
-    const playerStats = {
-      score,
-      seconds,
-      minutes,
-      safeSpace: field.safeSpaces,
-      name: 'Stefler'
-    }
-    axios.post('http://localhost:3001/users', playerStats)
-    .then((res)=> {
-      console.log(res);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
   };
 
   if (field.gameOver && !open) {
@@ -100,9 +83,15 @@ export default function Winner() {
           <Button onClick={handleClose} color="primary">
             Start New Game!
           </Button>
-          <Button onClick={submitScore} color="primary">
+          <Button color="primary">
             SubmitScore
           </Button>
+          <InputScore
+          field={field}
+          seconds={seconds}
+          minutes={minutes}
+          
+          />
         </DialogActions>
       </Dialog>
     </div>

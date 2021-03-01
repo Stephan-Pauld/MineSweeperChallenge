@@ -6,8 +6,6 @@ const sqlConnection = require('../lib/db.js');
 
 Router.post("/", (req, res) => {
   const { name, score, safeSpace, minutes, seconds } = req.body
-  console.log(req.body);
-  console.log(name, score, safeSpace, minutes, seconds);
   queryString = `INSERT INTO users (name, score, safeSpaces, minutes, seconds) VALUES ('${name}', ${score}, ${safeSpace}, ${minutes}, ${seconds});`;
   sqlConnection.query(queryString, (err, row, fields) => {
     if (!err) {
