@@ -9,6 +9,7 @@ import Slide from "@material-ui/core/Slide";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { cleanField, clearTimer, toggleTimer } from '../actions';
+import axios from "axios";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -30,6 +31,24 @@ export default function Winner() {
     dispatch(cleanField())
     dispatch(clearTimer())
     setOpen(false)
+  };
+
+  const submitScore = () => {
+    const score = ((216 - field.safeSpaces) * 10000) - ((minutes * 60 + seconds) * 1000)
+    const playerStats = {
+      score,
+      seconds,
+      minutes,
+      safeSpace: field.safeSpaces,
+      name: 'Stefler'
+    }
+    axios.post('http://localhost:3001/users', playerStats)
+    .then((res)=> {
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   };
 
   if (field.gameOver && !open) {
@@ -58,28 +77,31 @@ export default function Winner() {
         <DialogTitle id="alert-dialog-slide-title" style={{ textAlign: 'center' }}>
           {field.safeSpaces === 0 ? 'Winner' : 'BOOOOOM.....'}
           <br />
-          {field.safeSpaces === 0 ? 
-          "🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳" :
-          "💥💥💥💥💥💥💥💥💥💥💥💥"
+          {field.safeSpaces === 0 ?
+            "🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳" :
+            "💥💥💥💥💥💥💥💥💥💥💥💥"
           }
         </DialogTitle>
 
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
 
-          {field.safeSpaces === 0 ? 
-          `Excellent Job! You Finished With A Time Of ${minutes} Minutes And ${seconds} seconds` : 
-          `Vegetables and NOT BLOWING UP is essential for proper nutrition You Blew Up At ${minutes} Minutes And ${seconds} seconds`
-          }
+            {field.safeSpaces === 0 ?
+              `Excellent Job! You Finished With A Time Of ${minutes} Minutes And ${seconds} seconds` :
+              `Vegetables and NOT BLOWING UP is essential for proper nutrition You Blew Up At ${minutes} Minutes And ${seconds} seconds`
+            }
 
           </DialogContentText>
           <DialogContentText id="alert-dialog-slide-score" style={{ textAlign: 'center' }}>
-            Your Score: {((216 - field.safeSpaces)*10000) - ((minutes * 60 + seconds)*1000)}
+            Your Score: {((216 - field.safeSpaces) * 10000) - ((minutes * 60 + seconds) * 1000)}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Start New Game!
+          </Button>
+          <Button onClick={submitScore} color="primary">
+            SubmitScore
           </Button>
         </DialogActions>
       </Dialog>

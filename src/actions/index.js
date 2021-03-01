@@ -55,3 +55,11 @@ export const clearTimer = () => {
     type: 'CLEAR'
   }
 };
+
+export const setLeaderBoard = (stats) => {
+  
+  return {
+    type: 'SET_LEADER_BOARD',
+    payload: stats,
+  }
+};
