@@ -1,5 +1,6 @@
 # Installation
 
+(if you dont care about adding score to the leaderboard and just want to play minesweeper skip step 1,3,4,5 and for step 6 run 'npm start' in the react folder)
 
 1. MySql Server
 
