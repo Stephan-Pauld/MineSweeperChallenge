@@ -70,3 +70,21 @@ I was to use React with Redux, this was the first time I have used Redux.. Ive h
 
 
 # Screen Shots
+
+![MineSweeperGif](https://raw.githubusercontent.com/Stephan-Pauld/MineSweeperChallenge/master/screenshots/Github.gif)
+
+Empty Game
+![Blank Board](https://github.com/Stephan-Pauld/MineSweeperChallenge/blob/master/screenshots/blankBoard.png?raw=true)
+
+Used Field
+![Playing](https://github.com/Stephan-Pauld/MineSweeperChallenge/blob/master/screenshots/field.png?raw=true)
+
+GameOver
+![game over](https://github.com/Stephan-Pauld/MineSweeperChallenge/blob/master/screenshots/gameover.png?raw=true)
+
+
+staying organized
+![trello](https://github.com/Stephan-Pauld/MineSweeperChallenge/blob/master/screenshots/trello.png?raw=true)
+
+
+
