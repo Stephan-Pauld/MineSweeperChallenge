@@ -100,8 +100,8 @@ export default function Winner() {
           {field.safeSpaces === 0 ? 'Winner' : 'BOOOOOM.....'}
           <br />
           {field.safeSpaces === 0 ?
-            "🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳" :
-            "💥💥💥💥💥💥💥💥💥💥💥💥"
+            "🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳🎉🥳🎉" :
+            "💥🥕💥🥕💥🥕💥🥕💥🥕💥🥕💥"
           }
         </DialogTitle>
 
@@ -109,8 +109,8 @@ export default function Winner() {
           <DialogContentText id="alert-dialog-slide-description">
 
             {field.safeSpaces === 0 ?
-              `Excellent Job! You Finished With A Time Of ${minutes} Minutes And ${seconds} seconds` :
-              `Vegetables and NOT BLOWING UP is essential for proper nutrition You Blew Up At ${minutes} Minutes And ${seconds} seconds`
+              `Excellent Job! You Finished With A Time Of ${minutes} Minutes And ${seconds} Seconds` :
+              `Vegetables And NOT BLOWING UP Is Essential For Proper Nutrition You Blew Up At ${minutes} Minutes And ${seconds} Seconds`
             }
 
           </DialogContentText>

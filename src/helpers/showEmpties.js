@@ -36,7 +36,7 @@ export default function showEmpties(field, spaces, row, column, empties) {
     // to be the boder around the empty tiles.
     // we also remove a "safe space" count for each bordered tile.
 
-
+    // top left
     if (tile.row > 0 && tile.column > 0 && field[tile.row - 1][tile.column - 1].value === 0 && !field[tile.row - 1][tile.column - 1].show) {
       shown.push(field[tile.row - 1][tile.column - 1]);
 
@@ -45,6 +45,8 @@ export default function showEmpties(field, spaces, row, column, empties) {
       field[tile.row - 1][tile.column - 1].show = true;
     }
 
+
+    // top
     if (tile.row > 0 && field[tile.row - 1][tile.column].value === 0 && !field[tile.row - 1][tile.column].show) {
       shown.push(field[tile.row - 1][tile.column])
 
@@ -54,6 +56,8 @@ export default function showEmpties(field, spaces, row, column, empties) {
     }
 
 
+
+    // topRight
     if (tile.row > 0 && tile.column < field[1].length - 1 && field[tile.row - 1][tile.column + 1].value === 0 && !field[tile.row - 1][tile.column + 1].show) {
 
       shown.push(field[tile.row - 1][tile.column + 1])
@@ -64,6 +68,8 @@ export default function showEmpties(field, spaces, row, column, empties) {
       field[tile.row - 1][tile.column + 1].show = true
     }
 
+    
+    // right
     if (tile.column < field[1].length - 1 && field[tile.row][tile.column + 1].value === 0 && !field[tile.row][tile.column + 1].show) {
       shown.push(field[tile.row][tile.column + 1])
     } else if (tile.column < field[1].length - 1 && field[tile.row][tile.column + 1] && !field[tile.row][tile.column + 1].show && !field[tile.row][tile.column + 1].hasFlag) {
@@ -71,6 +77,8 @@ export default function showEmpties(field, spaces, row, column, empties) {
       field[tile.row][tile.column + 1].show = true
     }
 
+
+    // botRight
     if (tile.row < field.length - 1 && tile.column < field[1].length - 1 && field[tile.row + 1][tile.column + 1].value === 0 && !field[tile.row + 1][tile.column + 1].show) {
 
       shown.push(field[tile.row + 1][tile.column + 1]);
@@ -81,6 +89,8 @@ export default function showEmpties(field, spaces, row, column, empties) {
       field[tile.row + 1][tile.column + 1].show = true
     }
 
+
+    // bottom
     if (tile.row < field.length - 1 && field[tile.row + 1][tile.column].value === 0 && !field[tile.row + 1][tile.column].show) {
       shown.push(field[tile.row + 1][tile.column])
     } else if (tile.row < field.length - 1 && field[tile.row + 1][tile.column] && !field[tile.row + 1][tile.column].show && !field[tile.row + 1][tile.column].hasFlag) {
@@ -89,15 +99,17 @@ export default function showEmpties(field, spaces, row, column, empties) {
     }
 
 
-    if (tile.row < field.length - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1].value === 0 && !field[tile.row + 1][tile.column - 1].show) {
 
+    // bottom left
+    if (tile.row < field.length - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1].value === 0 && !field[tile.row + 1][tile.column - 1].show) {
       shown.push(field[tile.row + 1][tile.column - 1])
-      
-    } else if (tile.row < field.legth - 1 && tile.column > 0 && field[tile.row + 1][tile.column - 1] && !field[tile.row + 1][tile.column - 1].show && !field[tile.row + 1][tile.column - 1].hasFlag) {
+    } else if (tile.row < field.length - 1 && tile.column && field[tile.row + 1][tile.column - 1] && !field[tile.row + 1][tile.column - 1].show && !field[tile.row + 1][tile.column - 1].hasFlag) {
       spaces--;
-      field[tile.row + 1][tile.column - 1].show = true
+      field[tile.row + 1][tile.column - 1].show = true;
     }
 
+
+    // left
     if (tile.column > 0 && field[tile.row][tile.column - 1].value === 0 && !field[tile.row][tile.column - 1].show) {
       shown.push(field[tile.row][tile.column - 1])
     } else if (tile.column > 0 && field[tile.row][tile.column - 1] && !field[tile.row][tile.column - 1].show && !field[tile.row][tile.column - 1].hasFlag) {
