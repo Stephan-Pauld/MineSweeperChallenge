@@ -1,8 +1,9 @@
 import './App.css';
 import React, { useEffect } from 'react';
 import Field from './components/Field';
-import TopBar from './components/TopBar'
-import Winner from './components/Winner'
+import TopBar from './components/TopBar';
+import Winner from './components/Winner';
+import LeaderBoard from './components/LeaderBoard';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { cleanField, clearTimer, setLeaderBoard } from './actions';
@@ -70,19 +71,23 @@ function App() {
         <h1>LEADER BOARDS</h1>
       </div>
       <div>
-        
-        <table >
-          <tr>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Time</th>
-            <th>Tiles Left</th>
-          </tr>
-          {leaderBoard ? populateLeaderBoard() : ''}
-        </table>
+        <LeaderBoard/>
       </div>
     </>
   );
 }
 
 export default App;
+
+
+
+
+{/* <table >
+<tr>
+  <th>Name</th>
+  <th>Score</th>
+  <th>Time</th>
+  <th>Tiles Left</th>
+</tr>
+{leaderBoard ? populateLeaderBoard() : ''}
+</table> */}
