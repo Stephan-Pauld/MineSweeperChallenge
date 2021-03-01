@@ -70,3 +70,9 @@ export const highScoreInput = (input) => {
     payload: input,
   }
 };
+
+export const clearHighScoreName = () => {
+  return {
+    type: 'HS_CLEAR'
+  }
+};

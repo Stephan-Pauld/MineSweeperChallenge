@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from 'react-redux';
+import { cleanField, clearTimer, toggleTimer, clearHighScoreName } from '../actions';
+
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -8,13 +12,21 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import InputScore from './InputScore'
 
-import { useSelector, useDispatch } from 'react-redux';
-import { cleanField, clearTimer, toggleTimer } from '../actions';
-
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
+
+
+const style = {
+  buttonGroup: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+}
+
+
 
 export default function Winner() {
 
@@ -22,6 +34,7 @@ export default function Winner() {
   const timerIsActive = useSelector(state => state.timerIsActive)
   const seconds = useSelector(state => state.seconds)
   const minutes = useSelector(state => state.minutes)
+  const highScoreName = useSelector(state => state.highScoreInput)
   const dispatch = useDispatch();
 
   // Is it fair to use "useState" in these situations rather than
@@ -29,9 +42,35 @@ export default function Winner() {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
+    dispatch(clearHighScoreName())
     dispatch(cleanField())
     dispatch(clearTimer())
     setOpen(false)
+  };
+
+
+  const submitScore = (e) => {
+
+    const score = ((216 - field.safeSpaces) * 10000) - ((minutes * 60 + seconds) * 1000)
+    const playerStats = {
+      score,
+      seconds,
+      minutes,
+      safeSpace: field.safeSpaces,
+      name: highScoreName
+    }
+
+    if (playerStats.name.length > 3 && playerStats.name.length < 8) {
+      axios.post('http://localhost:3001/users', playerStats)
+        .then((res) => {
+          handleClose()
+          console.log("Axios Resolved!", highScoreName);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+
   };
 
   if (field.gameOver && !open) {
@@ -79,18 +118,17 @@ export default function Winner() {
             Your Score: {((216 - field.safeSpaces) * 10000) - ((minutes * 60 + seconds) * 1000)}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions style={style.buttonGroup} >
           <Button onClick={handleClose} color="primary">
             Start New Game!
           </Button>
-          <Button color="primary">
+          <Button color="primary" onClick={submitScore}>
             SubmitScore
           </Button>
           <InputScore
-          field={field}
-          seconds={seconds}
-          minutes={minutes}
-          
+            field={field}
+            seconds={seconds}
+            minutes={minutes}
           />
         </DialogActions>
       </Dialog>
