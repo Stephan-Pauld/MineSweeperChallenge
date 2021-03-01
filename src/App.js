@@ -49,6 +49,9 @@ function App() {
         < tr >
           <td>{player.name}</td>
           <td>{player.score}</td>
+          <td>{player.minutes}:{player.seconds > 9? player.seconds:`0${player.seconds}`}</td>
+          <td>{player.safeSpaces}</td>
+
         </tr >
       )
     })
