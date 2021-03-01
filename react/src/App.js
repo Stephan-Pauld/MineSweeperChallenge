@@ -42,23 +42,6 @@ function App() {
 
   }
 
-
-  const populateLeaderBoard = () => {
-    const leaderTable = []
-    leaderBoard.map((player) => {
-      leaderTable.push(
-        < tr >
-          <td>{player.name}</td>
-          <td>{player.score}</td>
-          <td>{player.minutes}:{player.seconds > 9? player.seconds:`0${player.seconds}`}</td>
-          <td>{player.safeSpaces}</td>
-
-        </tr >
-      )
-    })
-    return leaderTable;
-  }
-
   return (
     <>
       <div className="App">
@@ -78,16 +61,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-{/* <table >
-<tr>
-  <th>Name</th>
-  <th>Score</th>
-  <th>Time</th>
-  <th>Tiles Left</th>
-</tr>
-{leaderBoard ? populateLeaderBoard() : ''}
-</table> */}

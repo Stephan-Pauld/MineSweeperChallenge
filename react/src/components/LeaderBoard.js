@@ -29,13 +29,24 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs) {
-  return { name, calories, fat, carbs };
+function createData(name, score, time, tiles) {
+  return { name, score, time, tiles };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24),
+const leaderTable = [
+  
 ];
+
+// const populateLeaderBoard = (leaderBoard) => {
+//   leaderBoard.map((player) => {
+//     // const time = player.minutes: player.seconds > 9? player.seconds:`0${player.seconds}`
+//     leaderTable.push(createData(player.name, player.score, player.seconds, player.safeSpaces),)
+//   })
+//   return leaderTable;
+// }
+
+
+
 
 
 
@@ -43,7 +54,6 @@ const useStyles = makeStyles({
   table: {
     margin: 'auto',
     width: 1100,
-    // minWidth: 500,
   },
   paper: {
     margin: 'auto',
@@ -51,10 +61,18 @@ const useStyles = makeStyles({
   }
 });
 
+
+
+
 export default function LeaderBoard() {
 
   const leaderBoard = useSelector(state => state.leaderBoard)
   const classes = useStyles();
+
+
+
+
+console.log(leaderBoard);
 
   return (
     <TableContainer component={Paper} className={classes.paper}>
@@ -68,15 +86,14 @@ export default function LeaderBoard() {
           </TableRow>
         </TableHead>
         <TableBody>
-
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
+          {leaderBoard.map((player) => (
+            <StyledTableRow key={player.name}>
+              <StyledTableCell component="th" scope="player">
+                {player.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{player.score}</StyledTableCell>
+              <StyledTableCell align="right">{player.minutes}:{player.seconds > 9? player.seconds:`0${player.seconds}`}</StyledTableCell>
+              <StyledTableCell align="right">{player.safeSpaces}</StyledTableCell>
             </StyledTableRow>
           ))}
 
