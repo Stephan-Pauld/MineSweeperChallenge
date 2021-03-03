@@ -80,6 +80,7 @@ export default function Winner() {
   if (field.gameOver && !open) {
     setOpen(true);
 
+
     if (timerIsActive) {
       setTimeout(() => {
         dispatch(toggleTimer())

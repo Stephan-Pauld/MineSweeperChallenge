@@ -1,6 +1,7 @@
 import React from 'react'
 import Timer from './Timer'
 import { useSelector, useDispatch } from 'react-redux';
+import sand from '../assets/sandbg.jpg'
 
 const style = {
   bar: {
@@ -10,7 +11,8 @@ const style = {
     width: '595px',
     margin: 'auto',
     marginBottom: '1%',
-    background: 'linear-gradient(to bottom right, #ffff00 0%, #666699 90%)'
+    border: '4px solid #272727',
+    backgroundImage: `url(${sand})`
   }
 }
 

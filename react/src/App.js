@@ -36,17 +36,18 @@ function App() {
       })
   }, [])
 
+
+  // I dont think i use this anymore
   const newGame = () => {
     dispatch(cleanField())
     dispatch(clearTimer())
-
   }
 
   return (
     <>
       <div className="App">
         <Winner />
-        <h1>Stephan Sweeper</h1>
+        <h1 className="app-title">Nuke Sweeper</h1>
         <TopBar />
         <Field />
       </div>

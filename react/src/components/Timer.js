@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { seconds, minutes, resetSeconds } from '../actions';
-
+import timer from '../assets/timer.svg'
 
 const style = {
   timer: {
-    width: 25,
+    width: 33,
     marginLeft: '40px'
   },
   timerRow: {
@@ -41,7 +41,7 @@ export default function Timer() {
 
   return (
     <div style={style.timerRow}>
-      <img style={style.timer} src="https://www.flaticon.com/svg/vstatic/svg/4245/4245796.svg?token=exp=1614468961~hmac=a92b9779a281caf91f5789f1b1c7de0b" alt="" />
+      <img style={style.timer} src={timer} alt="" />
       <h4>{timeMinutes}:{timeSeconds > 9 ? timeSeconds : `0${timeSeconds}`}</h4>
     </div>
   )
